@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Billion Years Old • Timeless Music Vibes</title>
+  <meta name="description" content="A cosmic journey by Billion Years Old. Listen to 'Way Beyond the Stars' ft. Mickey Factz. Timeless Hip-Hop music vibes. Available on Spotify and Apple Music." />
+  <meta name="keywords" content="Billion Years Old, Hip-Hop, Galactic Monk, Becca Berry, Mickey Factz, Way Beyond the Stars, cosmic music, starseed, Spotify, Apple Music, new music, music group, 2025 release, timeless music" />
+  <meta name="author" content="Billion Years Old" />
+  <link rel="canonical" href="https://billionyearsold.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="music.song" />
+  <meta property="og:site_name" content="Billion Years Old" />
+  <meta property="og:url" content="https://billionyearsold.com/" />
+  <meta property="og:title" content="Billion Years Old • Timeless Music Vibes" />
+  <meta property="og:description" content="Timeless cosmic Hip-Hop. Listen to 'Way Beyond the Stars' by Billion Years Old, featuring Mickey Factz." />
+  <meta property="og:image" content="https://billionyearsold.com/images/billion-years-old-hero-image.webp" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@BillYearsOld" />
+  <meta name="twitter:title" content="Billion Years Old • Timeless Music Vibes" />
+  <meta name="twitter:description" content="Timeless cosmic Hip-Hop. Listen to 'Way Beyond the Stars' by Billion Years Old, featuring Mickey Factz." />
+  <meta name="twitter:image" content="https://billionyearsold.com/images/billion-years-old-hero-image.webp" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png" sizes="32x32" />
+
+  <!-- Tailwind CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Plyr.io CSS -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+  <style>
+  #particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    background: #000014;
+  }
+
+  .hero {
+    width: 100vw;
+    padding-top: 42.8571%; /* 21:9 aspect ratio */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-image: url('images/billion-years-old-hero-image.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    box-shadow: 0 13px 36px 0 rgba(0,0,0,0.13), 0 1.5px 5px 0 rgba(0,0,0,0.09);
+  }
+
+  .hero .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,20,0.18);
+  }
+
+  #canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.44;
+  }
+  .hero {
+    width: 100vw;
+    padding-top: 42.8571%; /* 21:9 aspect ratio */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-image: url('images/billion-years-old-hero-image.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    box-shadow: 0 13px 36px 0 rgba(0,0,0,0.13), 0 1.5px 5px 0 rgba(0,0,0,0.09);
+  }
+  .hero .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,20,0.18);
+  }
+  .cover-art {
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    border-radius: 1.5rem;
+  }
+  .cover-art:hover {
+    transform: scale(1.05);
+  }
+  #lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+  }
+  #lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    border-radius: 0.5rem;
+  }
+  #lightbox.open {
+    display: flex;
+  }
+  .feature-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+  }
+  .feature-badge span {
+    display: block;
+    padding: 0.28rem 1.15rem 0.28rem 1.15rem;
+    font-size: 0.89rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #fff;
+    line-height: 1;
+    font-family: inherit;
+  }
+  .social-icon {
+    transition: transform 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+  }
+  .social-icon:hover,
+  .social-icon:focus {
+    transform: scale(1.15);
+    box-shadow: 0 4px 16px rgba(0,64,255,0.16);
+    z-index: 2;
+  }
+
+  /* COMPACT PLYR AUDIO PLAYER OVERRIDES */
+  .plyr--audio {
+    max-width: 380px !important;
+    min-width: 220px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 12px rgba(40,60,130,0.10);
+    background: #13122b !important;
+  }
+  .plyr--full-ui input[type=range] {
+    height: 3px !important;
+    min-width: 0 !important;
+  }
+  .plyr__controls {
+    padding: 6px 10px !important;
+    gap: 0.33em !important;
+  }
+  .plyr__controls > button, .plyr__controls > input {
+    margin-right: 0.23em !important;
+  }
+  .plyr__progress {
+    margin: 0 6px !important;
+  }
+  .plyr--audio .plyr__controls {
+    min-height: 42px !important;
+  }
+  .plyr--audio .plyr__time {
+    font-size: 0.98em !important;
+  }
+  </style>
+
+</head>
+
+<body class="text-white font-sans relative">
+
+  <!-- Particles background -->
+  <div id="particles-js"></div>
+
+  <!-- Top bar: transparent, showing particles -->
+  <header class="fixed inset-x-0 top-0 z-40 h-16 flex items-center justify-between px-4 md:px-20 bg-black bg-opacity-70 backdrop-blur-sm shadow-lg">
+    <span
+      class="font-bold text-base sm:text-lg md:text-2xl lg:text-3xl text-white mr-2 sm:mr-0"
+      style="
+        line-height:1;
+        text-shadow:
+          0 0 1px #fff,
+          0 0 10px #4361ee,
+          0 0 22px #2563eb,
+          0 0 42px #274b8c,
+          0 2px 18px #7fa7ff,
+          0 0 34px rgba(56,122,255,0.26),
+          0 0 7px rgba(255,255,255,0.12);
+        font-family: 'Montserrat', Inter, sans-serif;
+      "
+    >
+      <img src="images/billion-years-old-logo.png" alt="Billion Years Old logo" style="height: 2.1em; display: inline; vertical-align: middle;" />
+    </span>
+    <div class="flex items-center space-x-2 sm:space-x-4 pointer-events-auto">
+      <!-- Twitter -->
+      <a
+        href="https://twitter.com/BillYearsOld"
+        target="_blank"
+        rel="noopener"
+        aria-label="Follow us on Twitter"
+        class="social-icon inline-flex items-center justify-center h-9 w-9 rounded-full bg-white hover:bg-gray-100 transition-shadow shadow"
+      >
+        <svg viewBox="0 0 32 32" fill="#1DA1F2" class="h-5 w-5 block" aria-hidden="true">
+          <title>Twitter logo</title>
+          <path d="M32 6.076a13.14 13.14 0 0 1-3.769 1.031A6.601 6.601 0 0 0 31.115 4.1a13.174 13.174 0 0 1-4.17 1.594A6.563 6.563 0 0 0 16 10.656a18.635 18.635 0 0 1-13.53-6.86a6.564 6.564 0 0 0 2.032 8.75A6.533 6.533 0 0 1 1.28 11.1v.083a6.564 6.564 0 0 0 5.265 6.437a6.59 6.59 0 0 1-2.889.109a6.571 6.571 0 0 0 6.126 4.558A13.18 13.18 0 0 1 0 27.025A18.616 18.616 0 0 0 10.063 30c12.072 0 18.684-10.002 18.684-18.683c0-.285-.007-.568-.02-.85A13.338 13.338 0 0 0 32 6.076z"/>
+        </svg>
+      </a>
+      <!-- Spotify -->
+      <a
+        href="https://open.spotify.com/artist/2EpdFJlj2LD9ZuFoRLwkyE?si=wEGC-CuPSrmrxb6zWlBm7A"
+        target="_blank"
+        rel="noopener"
+        aria-label="Listen on Spotify"
+        class="social-icon inline-flex items-center justify-center h-9 w-9 rounded-full bg-white hover:bg-gray-100 transition-shadow shadow"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg"
+          alt="Spotify logo"
+          class="h-5 w-5"
+        />
+      </a>
+      <!-- Apple Music -->
+      <a
+        href="https://music.apple.com/us/artist/billion-years-old/1780862047"
+        target="_blank"
+        rel="noopener"
+        aria-label="Listen on Apple Music"
+        class="social-icon inline-flex items-center justify-center h-9 w-9 rounded-full bg-white hover:bg-gray-100 transition-shadow shadow"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Apple_Music_icon.svg"
+          alt="Apple Music logo"
+          class="h-5 w-5"
+        />
+      </a>
+    </div>
+  </header>
+
+  <div class="mt-12 px-3 sm:px-4 md:px-20 pt-4">
+    <section id="hero" class="hero mb-7 sm:mb-12 relative">
+      <canvas id="canvas"></canvas>
+      <div class="overlay"></div>
+    </section>
+
+    <!-- AUDIO TEASER -->
+    <section id="teaser" class="pt-3 pb-7 flex flex-col md:flex-row items-center gap-7 md:gap-0">
+      <img 
+        id="cover" 
+        src="images/way-beyond-the-stars-cover-art.webp" 
+        alt="Way Beyond the Stars cover art" 
+        class="cover-art w-full sm:max-w-sm md:w-96 mb-0 md:mb-0 md:mr-12 rounded-2xl shadow-lg"
+        style="max-width: 97vw;"
+      />
+
+      <div class="flex-1">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-2 leading-tight">
+          Billion Years Old – “Way Beyond the Stars”
+        </h2>
+        <div class="feature-badge">
+          <span>Feat. Mickey Factz</span>
+        </div>
+        <p class="text-base sm:text-lg text-gray-300 mb-6">Listen to the new single</p>
+        <!-- Compact Plyr audio player (NO download, NO speed control) -->
+        <audio id="player" class="mx-auto mb-6" controls style="width:100%;max-width:380px;">
+          <source src="audio/byo-way-beyond-the-stars.mp3" type="audio/mpeg" />
+          Your browser doesn’t support audio.
+        </audio>
+        <div class="flex items-center gap-4 sm:gap-8 mt-3">
+          <a href="https://open.spotify.com/artist/2EpdFJlj2LD9ZuFoRLwkyE?si=wEGC-CuPSrmrxb6zWlBm7A" target="_blank" rel="noopener" aria-label="Listen on Spotify">
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/2/26/Spotify_logo_with_text.svg" 
+              alt="Spotify" 
+              class="h-10 sm:h-12 hover:opacity-80 transition-opacity"
+            />
+          </a>
+          <a href="https://music.apple.com/us/artist/billion-years-old/1780862047" target="_blank" rel="noopener" aria-label="Listen on Apple Music">
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Apple_Music_icon.svg" 
+              alt="Apple Music" 
+              class="h-10 sm:h-12 hover:opacity-80 transition-opacity"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox container -->
+    <div id="lightbox" onclick="closeLightbox()">
+      <img id="lightbox-img" src="" alt="Expanded cover art">
+    </div>
+
+    <!-- MAILING LIST -->
+    <section id="mail" class="py-8 sm:py-12 px-4 text-center bg-black bg-opacity-40 rounded-xl">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-3">Get Notified About New Projects</h2>
+      <p class="mb-5 text-base sm:text-lg">Music, Videos, and Merchandise</p>
+      <form id="subscribe-form" class="flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0 items-center justify-center w-full max-w-md mx-auto">
+        <input 
+          type="email" 
+          name="email"
+          placeholder="Your email" 
+          required 
+          class="px-4 py-2 rounded w-64 text-black" 
+        />
+        <button 
+          type="submit"
+          class="px-6 py-2 bg-blue-600 rounded hover:bg-blue-500 transition"
+        >
+          Notify Me
+        </button>
+      </form>
+      <p id="subscribe-success" class="mt-4 text-green-400 hidden">
+        Thanks for subscribing! You'll receive updates.
+      </p>
+      <p id="subscribe-error" class="mt-4 text-red-400 hidden">
+        Oops! Something went wrong. Please try again.
+      </p>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="py-5 text-center text-white-888 text-sm">
+    © 2025 Billion Years Old • Coded by Red Sheep
+  </footer>
+
+  <!-- Plyr.js and your scripts -->
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  <script>
+    // Plyr player init—NO download, NO speed control
+    const player = new Plyr('#player', {
+      controls: ['play', 'progress', 'current-time', 'mute', 'volume'],
+      settings: []
+    });
+
+    // Particles.js config
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 63, density: { enable: true, value_area: 900 } },
+        color: { value: ["#7f00ff", "#0040FF", "#8A2BE2", "#FF69B4", "#FF4500"] },
+        shape: { type: "circle" },
+        opacity: { value: .888 },
+        size: {
+          value: 8,
+          random: true,
+          anim: { enable: true, speed: 1.1, size_min: 3, sync: false }
+        },
+        line_linked: {
+          enable: true,
+          distance: 140,
+          color: "#4F8CFF",
+          opacity: 0.55,
+          width: 1.11
+        },
+        move: {
+          enable: true,
+          speed: 1.0,
+          direction: "none",
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          grab: { distance: 180, line_linked: { opacity: 0.35 } },
+          push: { particles_nb: 5 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Lightbox logic
+    const cover = document.getElementById('cover');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    cover.addEventListener('click', () => {
+      lightboxImg.src = cover.src;
+      lightbox.classList.add('open');
+    });
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+    }
+
+    // AJAX form submission to Make webhook
+    const form = document.getElementById('subscribe-form');
+    const successMsg = document.getElementById('subscribe-success');
+    const errorMsg = document.getElementById('subscribe-error');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
+      const data = new URLSearchParams(new FormData(form));
+      try {
+        const res = await fetch('https://hook.us2.make.com/nulpo5tw5vda7eoo31xz85ug0of9d8se', {
+          method: 'POST',
+          body: data
+        });
+        if (!res.ok) throw new Error('Network error');
+        form.reset();
+        successMsg.classList.remove('hidden');
+      } catch (err) {
+        errorMsg.classList.remove('hidden');
+      }
+    });
+  </script>
+
+  <script>
+    var canvas = document.getElementById('canvas'),
+        ctx = canvas.getContext('2d');
+
+    function resize() {
+        var hero = document.querySelector('.hero');
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+        canvas.style.width = hero.offsetWidth + 'px';
+        canvas.style.height = hero.offsetHeight + 'px';
+    }
+    resize();
+    window.onresize = resize;
+
+    function noise(ctx) {
+        var w = ctx.canvas.width,
+            h = ctx.canvas.height,
+            idata = ctx.createImageData(w, h),
+            buffer32 = new Uint32Array(idata.data.buffer),
+            len = buffer32.length,
+            i = 0;
+
+        for(; i < len;)
+            buffer32[i++] = ((255 * Math.random())|0) << 24;
+        
+        ctx.putImageData(idata, 0, 0);
+    }
+
+    var toggle = true;
+
+    // added toggle to get 30 FPS instead of 60 FPS
+    (function loop() {
+        toggle = !toggle;
+        if (toggle) {
+            requestAnimationFrame(loop);
+            return;
+        }
+        noise(ctx);
+        requestAnimationFrame(loop);
+    })();
+  </script>
+
+</body>
+</html>
